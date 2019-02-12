@@ -1,0 +1,1142 @@
+/*
+
+
+            .@    %@@@@@    /@@@@@/   %@&
+          .@%       @@@.     #@@         @%           .#@@@@@@@%.           #@@@@&@@@@@@@&,
+         ,%           &%     @*           /@     .@@@@@@#         &@(    @@(          ,@@@@@@@,
+         @             &    /%             ./  #@@@@@@              /@ ,@(              /@@@@@@@*
+        @               @   @               @ @@@@@@@                                    %@@@@@@@,
+        @               @.  @               @@@@@@@@#                                    .@@@@@@@&
+        @,             .@#  @*              @@@@@@@@&                                    &@@@@@@@
+        @@             @@%  @@             @@*@@@@@@@%               @@@@*              #@@@@@@@
+        /@@/         .@@@*  %@@@         %@@@  @@@@@@@@.           @@@@@@@@%          &@@@@@@(
+         @@@@@#, .(@@@@@@    @@@@@@&@@@@@@/    ,&@@@@@@@@@##&@@@,  .@@@..%@@@@@@@@@@@@&.
+          @@@@@@@@@@@@@@#    /@@@@@@@@@@@@@@              .@@@@@.             &@@@@@@
+           @@@@@@@@@@@@@      #@@@@@@@@@@@@             %@@@@@@@@@%         @@@@@@@@@@@
+            &@@@@@@@@@%         @@@@@@@@@/             @@@@@@@@@@@@@       @@@@@@@@@@@@@,
+              .@@@@@               &@@/               @@@@@@@@@@@@@@@     @@@@@@@@@@@@@@@.
+          *&@@@@@@@@@@,   @@,   (@@@@@@@@@@@@%.      #@@@@@@@@@@@@@@@@   &@@@@@@/.*%@@@@@@
+     .@@@@@@%         ,@@@@@@@@%          /@@@@@@&   @@@@.        @@@@   @@@@         ,@@@%
+   @@@@@@@.              @@@@%              ,@@@@@@@,@@/           ,@@.  @@.            @@@
+  @@@@@@@.                /,.                #@@@@@@@@%             .@#  @*              @@
+ @@@@@@@@                                    ,@@@@@@@@               @(  @               #@
+ #@@@@@@@*                                   &@@@@@@%@               @.  @               &@
+  &@@@@@@@               &@ @.              (@@@@@@* /%              @   #@              @,
+    @@@@@@@&           *@&   @@           ,@@@@@@,    @.            @#    @&            @@
+       /@@@@@@@&(,*%@@&        .@@@%##&@@@@@@,         @@          @@      @@.        %@@
+                                                        *@@     @@@@@(    #@@@@@     @@
+
+
+
+
+
+/* ----------GLOBAL----------   */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+body {
+  font-size: 14px;
+  background: white;
+  color: #000;
+  text-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-transform: uppercase;
+}
+
+p {
+  width: 100%;
+  max-width: 40em;
+  line-height: 0.2;
+  margin: 0 auto 1.5em;
+}
+
+h1 {
+  line-height: .5;
+}
+
+h3 !important {
+  line-height: .5;
+  text-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  font-size: 24px;
+}
+h3 span:before {
+  border-top: 20px solid rgba(255,255,0,0.9);
+  content:“”;
+  margin: 0 auto;
+  position: absolute;
+  top: 8px; left: 200px; right: 0; bottom: 0;
+  width: 20%;
+  z-index: 1;
+}
+
+a {
+  line-height: .5;
+  font-size: 24px;
+  color: #F6F;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+
+a:hover {
+
+}
+
+a:active {
+  color: purple;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+
+/*   ----------HOVER ANIMATIONS----------   */
+@keyframes glitch {
+  from {
+    text-shadow: 0 0px 0px black;  }
+  20% {
+    text-shadow: 2px -2px 0px #f8b2b9;  }
+  40% {
+    text-shadow: -8px -3px 0px black;  }
+  60% {
+    text-shadow: -8px 2px 0px #f8b2b9;  }
+  80% {
+    text-shadow: -4px -2px 0px #f8b2b9;  }
+  90% {
+    text-shadow: -2px 0px 0px black;  }
+  to {
+    text-shadow: 3px 3px -2px black;  }
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: skewX(24deg); }
+  10% {
+    -webkit-transform: skewX(-8deg);  }
+  20% {
+    -webkit-transform: skewX(55deg);  }
+  30% {
+    -webkit-transform: skewX(90deg);  }
+  40% {
+    -webkit-transform: skewX(29deg);  }
+  50% {
+    -webkit-transform: skewX(-90deg);  }
+  60% {
+    -webkit-transform: skewX(3deg);  }
+  70% {
+    -webkit-transform: skewX(2deg);  }
+  80% {
+    -webkit-transform: skewX(1deg);  }
+  90% {
+    -webkit-transform: skewX(10deg);  }
+  100% {
+    -webkit-transform: skewX(0deg);  }
+}
+
+
+
+/*
+██ ███    ██ ████████ ██████   ██████       █████  ███    ██ ██ ███    ███  █████  ████████ ██  ██████  ███    ██
+██ ████   ██    ██    ██   ██ ██    ██     ██   ██ ████   ██ ██ ████  ████ ██   ██    ██    ██ ██    ██ ████   ██
+██ ██ ██  ██    ██    ██████  ██    ██     ███████ ██ ██  ██ ██ ██ ████ ██ ███████    ██    ██ ██    ██ ██ ██  ██
+██ ██  ██ ██    ██    ██   ██ ██    ██     ██   ██ ██  ██ ██ ██ ██  ██  ██ ██   ██    ██    ██ ██    ██ ██  ██ ██
+██ ██   ████    ██    ██   ██  ██████      ██   ██ ██   ████ ██ ██      ██ ██   ██    ██    ██  ██████  ██   ████
+*/
+
+
+#bodymovin {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  background: white;
+  text-shadow: 0;
+  background-color: #f8b2b9;
+}
+tspan {
+  text-shadow: 0;
+}
+#white {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  opacity: 1;
+  background-size: auto;
+  background-color: #f8b2b9;
+}
+
+
+
+/*
+████████ ██    ██ ██████  ███████ ██     ██ ██████  ██ ████████ ███████ ██████
+   ██     ██  ██  ██   ██ ██      ██     ██ ██   ██ ██    ██    ██      ██   ██
+   ██      ████   ██████  █████   ██  █  ██ ██████  ██    ██    █████   ██████
+   ██       ██    ██      ██      ██ ███ ██ ██   ██ ██    ██    ██      ██   ██
+   ██       ██    ██      ███████  ███ ███  ██   ██ ██    ██    ███████ ██   ██
+*/
+
+
+#typewriter {
+  position: inherit;
+  margin-top: 65vh !important;
+  z-index: 0 !important;
+}
+#typewriter h2 {
+  font-size: 5.5vh;
+  line-height: 5vh;
+}
+#typewriter h3 {
+  font-size: 3vh;
+  font-family: 'Ubuntu Mono', monospace;
+  line-height: 1vh;
+}
+
+.screen {
+  position: relative;
+  top: 50%;
+  right: 2%;
+  -webkit-transform: translateY(-100%) !important;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  padding: 0em 2em;
+  text-align: center;
+  z-index: 1500;
+}
+.printing:after {
+  content: "|";
+  color: #bc808a;
+  animation: blink 0.66s steps(3, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+    /*setTimeout*/
+.hide {
+  display: none;
+}
+.hide-2 {
+  visibility: hidden;
+}
+.show {
+  display: block;
+  position: relative;
+  margin-top: 54% !important;
+}
+
+
+
+/*
+███████ ██    ██ ███████ ███    ██ ████████ ██████  ██████  ██ ████████ ███████
+██      ██    ██ ██      ████   ██    ██    ██   ██ ██   ██ ██    ██    ██
+█████   ██    ██ █████   ██ ██  ██    ██    ██████  ██████  ██    ██    █████
+██       ██  ██  ██      ██  ██ ██    ██    ██   ██ ██   ██ ██    ██    ██
+███████   ████   ███████ ██   ████    ██    ██████  ██   ██ ██    ██    ███████
+*/
+
+
+#eventbrite {
+  font-family: 'Ubuntu Mono', monospace;
+  color: black;
+  text-decoration: underline;
+  font-size: 3vh !important;
+  z-index: 2001;
+  line-height: 0 !important;
+  margin-top: 6vh;
+}
+#eventbrite:hover {
+  animation: wiggle 0.5s ease-in;
+}
+#eventbrite:active {
+  color: purple;
+  font-weight: bolder;
+  text-decoration: none;
+}
+#eventbrite-widget-container-42634056611 {
+  width: 55%;
+  position: relative;
+  top: 35%;
+  right: -22%;
+  -webkit-transform: translateY(-20%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.90);
+}
+
+
+
+/*
+██   ██  ██████  ███    ███ ███████     ███    ██  █████  ██    ██
+██   ██ ██    ██ ████  ████ ██          ████   ██ ██   ██ ██    ██
+███████ ██    ██ ██ ████ ██ █████       ██ ██  ██ ███████ ██    ██
+██   ██ ██    ██ ██  ██  ██ ██          ██  ██ ██ ██   ██  ██  ██
+██   ██  ██████  ██      ██ ███████     ██   ████ ██   ██   ████
+*/
+
+
+.bottom {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  max-width: 1250px;
+  font-family: 'Ubuntu Mono', monospace;
+
+}
+.bottom img:hover {
+  filter: saturate(50);
+  box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.30);
+}
+.bottom img {
+  filter: saturate(0);
+  box-shadow:
+}
+
+.bottom h3:hover {
+  animation: wiggle 0.5s ease-in;
+}
+
+.nav {
+  list-style: none;
+  width: 100%;
+}
+ul {
+  display: inline-block;
+  -webkit-padding-start: 0px;
+}
+.nav li {
+  display: inline-block;
+  width: 190px;
+  height: 160px;
+}
+.nav a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+}
+li a {
+  display: block;
+  color: pink;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}
+#home-menu-1 {
+  z-index: 1500;
+}
+#home-menu-2 {
+  z-index: 1500;
+}
+#home-menu-3 {
+  z-index: 1500;
+}
+.menu-img {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.active {
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+}
+.navigation{
+  font-family: 'Ubuntu Mono', monospace;
+  color: black;
+  text-decoration: underline;
+  font-size: 3vh;
+  z-index: 2001;
+  font-weight: bolder;
+  line-height: 2em;
+  display: block;
+}
+
+a.navigation:hover {
+  animation: wiggle 0.5s ease-in;
+}
+span {
+  display: block;
+}
+
+
+
+/*
+███    ███ ███████ ██████  ██  █████       ██████  ██    ██ ███████ ██████  ██ ███████ ███████
+████  ████ ██      ██   ██ ██ ██   ██     ██    ██ ██    ██ ██      ██   ██ ██ ██      ██
+██ ████ ██ █████   ██   ██ ██ ███████     ██    ██ ██    ██ █████   ██████  ██ █████   ███████
+██  ██  ██ ██      ██   ██ ██ ██   ██     ██ ▄▄ ██ ██    ██ ██      ██   ██ ██ ██           ██
+██      ██ ███████ ██████  ██ ██   ██      ██████   ██████  ███████ ██   ██ ██ ███████ ███████
+                                              ▀▀
+*/
+
+
+/* ----------MEDIA QUERIES (2560px)---------- */
+@media (min-width: 2560px) {
+
+
+}
+
+/* ----------MEDIA QUERIES (1440px)---------- */
+@media (min-width: 1440px) {
+
+
+}
+
+/* ----------MEDIA QUERIES (1024px)---------- */
+@media (max-width: 1024px) {
+  #bodymovin {
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100vh;
+  }
+  h3 {
+    font-size: 34px;
+  }
+  a {
+    line-height: 1;
+    font-size: 34px;
+  }
+  .screen {
+    right: 5%;
+  }
+}
+
+/* ----------MEDIA QUERIES (768px)---------- */
+@media (min-width: 768px) {
+
+}
+@media (max-width: 768px) {
+  #typewriter h2 {
+    font-size: 4.5vh;
+  }
+
+}
+
+/* ----------MEDIA QUERIES (414px)---------- */
+@media (max-width: 414px) {
+  #bodymovin {
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100vh;
+
+  }
+
+  #typewriter h2 {
+    font-size: 3.7vh;
+  }
+  #typewriter h3 {
+    font-size: 2.7vh;
+    line-height: 3vh;
+  }
+  .navigation {
+    font-size: 2.7vh;
+  }
+  .screen {
+    padding: 0em 1.2em;
+  }
+  #typewriter {
+    margin-top: 70vh !important;
+  }
+}
+
+/* ----------MEDIA QUERIES (375px)---------- */
+@media (max-width: 375px) {
+
+}
+
+/* ----------MEDIA QUERIES (320px)---------- */
+@media (max-width: 320px) {
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+████████  ██████  ██████      ███    ██  █████  ██    ██     ██████   █████  ██████
+   ██    ██    ██ ██   ██     ████   ██ ██   ██ ██    ██     ██   ██ ██   ██ ██   ██
+   ██    ██    ██ ██████      ██ ██  ██ ███████ ██    ██     ██████  ███████ ██████
+   ██    ██    ██ ██          ██  ██ ██ ██   ██  ██  ██      ██   ██ ██   ██ ██   ██
+   ██     ██████  ██          ██   ████ ██   ██   ████       ██████  ██   ██ ██   ██
+*/
+
+
+.nav-bar {
+  position: absolute;
+  height: 6vh;
+  z-index: 2000;
+  width: 100%;
+  box-shadow: 0px -2px 20px rgba(0, 0, 0, 0.00);
+  cursor: default;
+  background-color: #f8b2b9;
+  min-height: 55px;
+}
+
+.left {
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 50%;
+  cursor: pointer;
+  overflow: hidden;
+}
+.left a img {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -15%);
+}
+.logo {
+  height: 40px;
+  padding-left: 0px;
+}
+.nav-bar .left a:hover {
+  animation: wiggle 0.5s infinite alternate;
+}
+.right h3 {
+  color: black;
+  font-size: 2.3vmin;
+  letter-spacing: .5px;
+  font-family: 'Ubuntu Mono', monospace;
+}
+.right h3:hover {
+    animation: wiggle 0.5s ease-in;
+    color: black;
+}
+.right a h3 {
+  height: 100%;
+  position: relative;
+  margin-top: 7px;
+  padding: 0 2vw 0 2vw;
+}
+
+.right {
+  position: absolute;
+  float: right;
+  text-align: right;
+  right: 20px;
+  width: 60%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+
+.container {
+  margin-top: 12px;
+}
+
+
+
+/*
+ ██████   ██████   ██████   ██████  ██      ███████     ███    ███  █████  ██████  ███████
+██       ██    ██ ██    ██ ██       ██      ██          ████  ████ ██   ██ ██   ██ ██
+██   ███ ██    ██ ██    ██ ██   ███ ██      █████       ██ ████ ██ ███████ ██████  ███████
+██    ██ ██    ██ ██    ██ ██    ██ ██      ██          ██  ██  ██ ██   ██ ██           ██
+ ██████   ██████   ██████   ██████  ███████ ███████     ██      ██ ██   ██ ██      ███████
+*/
+
+
+#map {
+  width: 75vw;
+  /* height: 80vh; */
+  height: 74vh;
+  float: left;
+  background-color: #f8b2b9;
+  border-color: #f8b2b9;
+  border-width: 0px 0px 0px 0px;
+  border-style: solid;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  box-shadow: 2px -2px 20px rgba(0, 0, 0, 0.15);
+}
+
+#map h1 {
+  font-size: 3vmin;
+  letter-spacing: 1px;
+  padding: 1vmin;
+  text-transform: none;
+  font-family: 'Barlow Condensed', sans-serif;
+
+}
+
+#map h2 {
+  font-size: 1vw;
+  letter-spacing: 1px;
+  padding: 5px;
+  text-transform: none;
+  font-weight: normal;
+  line-height: 2.5vmin;
+}
+#map h3 {
+    font-size: .9vw;
+    letter-spacing: 1px;
+    padding: 0px 0px 5px 0px;
+    text-transform: none;
+    font-weight: normal;
+}
+
+ h5 {
+    font-size: 4vw;
+    letter-spacing: 1px;
+    text-transform: none;
+    font-weight: normal;
+    float: right;
+    position: absolute;
+    right: 0;
+
+}
+#map a h3:hover {
+  animation: wiggle 0.5s alternate ease;
+}
+
+#map img {
+  height: 17vmax;
+  width: 17vmax;
+  object-fit: cover;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 15px;
+}
+
+.infowindow-icons {
+  width: 20%;
+  height: 3vw;
+  padding: 0 0vw 0 4.5vw;
+}
+
+
+
+/*
+███    ███  █████  ██████      ███████ ██ ██████  ███████     ██████   █████  ███    ██ ███████ ██
+████  ████ ██   ██ ██   ██     ██      ██ ██   ██ ██          ██   ██ ██   ██ ████   ██ ██      ██
+██ ████ ██ ███████ ██████      ███████ ██ ██   ██ █████       ██████  ███████ ██ ██  ██ █████   ██
+██  ██  ██ ██   ██ ██               ██ ██ ██   ██ ██          ██      ██   ██ ██  ██ ██ ██      ██
+██      ██ ██   ██ ██          ███████ ██ ██████  ███████     ██      ██   ██ ██   ████ ███████ ███████
+*/
+
+#side-panel {
+  width: 25vw;
+  height: 74vh;
+  /* height: 80vh; */
+  position: absolute;
+  overflow: scroll;
+  background: #f8b2b9;
+  box-shadow: 2px -2px 20px rgba(0, 0, 0, 0.20);
+  bottom: 0;
+  right: 0;
+}
+
+.artists h1 {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.8vmax;
+  margin-bottom: 10px;
+  color: black;
+  line-height: 2.5vmax;
+}
+
+.artists a h1:hover {
+  animation: wiggle 0.0s;
+}
+
+.artists a img {
+  height: 40px;
+  align-items: center;
+}
+
+.artists .row {
+  margin-top: 3vh;
+}
+
+.artists a h3 {
+  text-align: center;
+  font-size: 2.3vmin;
+  color: black;
+  line-height: 3.8vmin;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.0);
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+#side-panel img:hover~h3, .artists h3:hover {
+  animation: wiggle 0.5s ease-in;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#markers {
+  width: 25vw;
+  position: relative;
+}
+
+
+
+/*
+███    ███  █████  ██████      ████████  ██████  ██████      ██████   █████  ███    ██ ███████ ██
+████  ████ ██   ██ ██   ██        ██    ██    ██ ██   ██     ██   ██ ██   ██ ████   ██ ██      ██
+██ ████ ██ ███████ ██████         ██    ██    ██ ██████      ██████  ███████ ██ ██  ██ █████   ██
+██  ██  ██ ██   ██ ██             ██    ██    ██ ██          ██      ██   ██ ██  ██ ██ ██      ██
+██      ██ ██   ██ ██             ██     ██████  ██          ██      ██   ██ ██   ████ ███████ ███████
+*/
+
+#top-panel {
+  width: 100vw;
+  height: 20vh;
+  position: absolute;
+  overflow: hidden;
+  background: white;
+  top: 6vh;
+  /* background: #f8b2b9; */
+  /* top: 0; */
+  padding: 5vmin 10.5vmin 0vh 10.5vmin;
+  z-index: 1000;
+  box-shadow: 2px -2px 20px rgba(0, 0, 0, 0.20);
+}
+
+.info h3 {
+  line-height: 2vw;
+  text-align: right;
+  font-size: 1.45vw;
+  color: black;
+  position: relative;
+}
+
+#top-panel h2 {
+  font-size: 6vmin;
+  text-align: center;
+  line-height: 5.5vmin;
+  letter-spacing: 1.5px;
+  float: left;
+  padding-right: 5vw;
+}
+
+.info {
+  position: relative; 
+  top: 50%; 
+  -webkit-transform: translateY(-50%); 
+  -ms-transform: translateY(-50%); 
+  transform: translateY(-50%);
+}
+
+
+
+
+/*
+███    ███ ███████ ██████  ██  █████       ██████  ██    ██ ███████ ██████  ██ ███████ ███████
+████  ████ ██      ██   ██ ██ ██   ██     ██    ██ ██    ██ ██      ██   ██ ██ ██      ██
+██ ████ ██ █████   ██   ██ ██ ███████     ██    ██ ██    ██ █████   ██████  ██ █████   ███████
+██  ██  ██ ██      ██   ██ ██ ██   ██     ██ ▄▄ ██ ██    ██ ██      ██   ██ ██ ██           ██
+██      ██ ███████ ██████  ██ ██   ██      ██████   ██████  ███████ ██   ██ ██ ███████ ███████
+                                              ▀▀
+*/
+
+/* ----------MEDIA QUERIES (2560px)---------- */
+
+@media (min-width: 1890px) {
+
+  #map img {
+    width: 12vmax;
+    height: 12vmax;
+  }
+  #map h2 {
+    font-size: .7vw;
+    line-height: 2vmin;
+  }
+  #map h3 {
+    font-size: .6vw;
+  }
+}
+
+/* ----------MEDIA QUERIES (1441px)---------- */
+
+@media (min-width: 1441px) {
+  .artists .row {
+    margin-top: 10%;
+  }
+}
+
+@media (max-width: 1440px) {
+  .infowindow {
+    width: 45vmax !important;
+  }
+}
+
+/* ----------MEDIA QUERIES (1024px)---------- */
+
+@media (max-width: 1024px) {
+  .artists .row {
+    margin-top: 5%;
+  }
+  .info h3 {
+    font-size: 1.8vw;
+    line-height: 2.3vw;
+  }
+  #map h2 {
+    font-size: 1.5vw;
+    line-height: 2vw;
+
+  }
+  #map h3 {
+    font-size: 1.4vw;
+  }
+  .infowindow {
+    width: 40vmax !important;
+  }
+  #map img {
+    width: 100%;
+    float: none;
+    margin: 0px 0px 15px 0px;
+    padding: 0px;
+  }
+
+}
+
+/* ----------MEDIA QUERIES (768px)---------- */
+
+@media (max-width: 768px) {
+  #top-panel {
+    display: none;
+  }
+  .nav-bar {
+    box-shadow: 0px -2px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  #side-panel {
+    height: 94vh;
+  }
+  .artists h1 {
+    font-size: 4vmin;
+    margin: 20px 0px 10px 0px;
+    line-height: 4vmin;
+    display: flex;
+  }
+  /*  LIST OF ARTISTS */
+  .artists .row {
+    margin: 0%;
+    padding-top: 10px;
+    width: 100%;
+    float: none;
+  }
+  .right h3 {
+    display: none;
+  }
+  .right a img {
+    margin: 0;
+    position: absolute;
+    top: 15px;
+  }
+  #map {
+    height: 94vh;
+  }
+
+  #map h2 {
+    font-size: 2vmin;
+    line-height: 2.5vmin;
+  }
+  #map h3 {
+    font-size: 1.9vmin;
+  }
+  .infowindow {
+    width: 35vmax !important;
+  }
+}
+
+/* ----------MEDIA QUERIES (600px)---------- */
+
+@media (max-width: 600px) {
+  #map {
+    width: 100vw;
+    height: 47vh;
+    top: 6vh;
+  }
+  #map h1 {
+    font-size: 3vmax;
+  }
+  #map h2 {
+    font-size: 2vmax;
+    line-height: 2.5vmax;
+
+  }
+  #map h3 {
+    font-size: 2vmax;
+  }
+  #map img {
+    height: 12.5vmax;
+  }
+  #side-panel {
+    width: 100vw;
+    height: 47vh;
+    bottom: 0;
+    text-align: center;
+    min-height: 160px;
+    box-shadow: 0px -2px 7px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 10px 10px 0px 0px;
+  }
+  /*  LIST OF ARTISTS */
+  .artists .row {
+    margin: 0%;
+    padding-top: 0px;
+    width: 100%;
+    float: none;
+  }
+  .artists a h3 {
+    font-size: 3.5vmax;
+    line-height: 0vmax;
+    text-align: center;
+    width: 100%;
+    padding: 40px 0px 40px 0px;
+    border-top: 1.5px solid rgba(0, 0, 0, .15);
+    margin: 0;
+
+  }
+  .artists h1 {
+    font-size: 3.5vmax;
+    line-height: 5.5vmax;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    padding: 0px 0px 15px 0px;
+  }
+  .right h3 {
+    display: none;
+  }
+  .right a img {
+    margin: 0;
+    position: absolute;
+    top: 15px;
+  }
+
+  #markers {
+    width: 100vw;
+    position: relative;
+
+  }
+}
+
+/* ----------MEDIA QUERIES (414px)---------- */
+
+@media (max-width: 414px) {
+  .artists a h3 {
+    font-size: 3.2vmax;
+    text-align: left;
+    width: 100%;
+    padding: 40px 0px 40px 20px;
+
+  }
+
+}
+
+/* ----------MEDIA QUERIES (375px)---------- */
+
+@media (max-width: 375px) {
+  .nav-bar {
+    min-height: 0px;
+  }
+  .left a img {
+    transform: translate(0, -30%);
+  }
+  .logo {
+    height: 30px;
+  }
+
+
+}
+  /* ----------MEDIA QUERIES (320px)---------- */
+  @media (max-width: 320px) {
+    #map img {
+      height: 10vmax;
+    }
+    .left a img {
+      transform: translate(0, -40%);
+    }
+    .logo {
+      height: 25px;
+    }
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------MISC./UNUSED----------    */
+.cta {
+  position: relative;
+  height: 100%;
+  z-index: 101;
+}
+
+.section-2 {
+  padding: 5em 10em;
+  position: relative;
+}
+
+.izotope-container {
+  position: relative;
+  height: 780px;
+}
+
+.wh-30 {
+  width: 33.33%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  text-align: left;
+}
+
+.wh-33 {
+  width: 33.333%;
+  float: left;
+}
+
+.item-drid-size {
+  position: relative;
+  padding: 0px 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.resp-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.inquirer {
+  text-align: left;
+  padding-left: 10%;
+}
+
+.life-coach {
+  text-align: right;
+  padding-right: 10%;
+}
+#eye {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  opacity: .4;
+}
+
+#static {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -101;
+  opacity: 0.1;
+  filter: grayscale(100);
+}
+
+#lines {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 150%;
+  min-height: 120%;
+  width: auto;
+  height: auto;
+  z-index: -102;
+  opacity: .6;
+  background-size: cover;
+}
+
+#spiral {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  z-index: -103;
+  opacity: 0;
+  background-size: cover;
+}
+
+.background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -99;
+  opacity: .15;
+  background-size: auto;
+}
