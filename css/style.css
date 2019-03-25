@@ -526,7 +526,6 @@ span {
   float: left;
   height: 100%;
   width: 50%;
-  cursor: pointer;
   overflow: hidden;
 }
 .left a img {
