@@ -1,4 +1,4 @@
-![alt text](/img/logo.png)
+![alt text](/img/logo.png | width=180)
 
 # Signature Graffiti Map
 
