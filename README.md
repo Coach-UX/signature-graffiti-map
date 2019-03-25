@@ -1,4 +1,4 @@
-![alt text](/img/logo.png | width=180)
+![alt text](https://www.coach.com/on/demandware.static/Sites-Coach_US-Site/-/default/dw6e062fcf/images/logo-coach.svg)
 
 # Signature Graffiti Map
 
